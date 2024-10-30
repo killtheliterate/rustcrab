@@ -9,7 +9,7 @@ export const menuItems: MenuObject[] = [
   { items: "Home", link: "/" },
   { items: "Books", link: "/books" },
   { items: "Projects", link: "/projects" },
-  { items: "Dev Tools", link: "/dev_tools" },
+  { items: "Dev Tools", link: "/devtools" },
   { items: "Lesson", link: "/lessons" },
   { items: "DSA", link: "/dsas" },
 ];

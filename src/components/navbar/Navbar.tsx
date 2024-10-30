@@ -6,7 +6,7 @@ const menuItems: MenuObject[] = [
   { items: "Books", link: "/books" },
   { items: "Projects", link: "/projects" },
   { items: "Lessons", link: "/lessons" },
-  { items: "Dev Tools", link: "/dev_tools" },
+  { items: "Dev Tools", link: "/devtools" },
   { items: "DSA Example", link: "/dsas" },
 ];
 
