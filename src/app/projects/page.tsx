@@ -2,34 +2,33 @@
 
 import React from "react";
 import { Search } from "lucide-react";
-import { tools } from "@/data/tools";
+import { projects } from "@/data/projects";
 import Card from "@/components/Card";
 import Head from "next/head";
-
 import { useSearch } from "@/hooks/useSearch/useSearch";
 
-export default function DevTools() {
+export default function Projects() {
   const { term, records, setSearchTerm } = useSearch({
-    records: tools,
+    records: projects,
     searchableFields: ["name", "description"],
   });
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-black">
       <Head>
-        <title>Rustcrab | Rust Developer Tools</title>
+        <title>Rustcrab | Books to Learn Rust</title>
       </Head>
 
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-800 dark:text-white">
-          Rust Developer Tools
+          Rust Projects
         </h1>
 
         <div className="mb-8 max-w-md mx-auto">
           <div className="relative">
             <input
               type="text"
-              placeholder="Search tools..."
+              placeholder="Search books..."
               value={term}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full p-3 pl-10 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -41,15 +40,15 @@ export default function DevTools() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-5">
-          {records.map((tool, index) => (
-            <Card item={tool} key={index} />
+        <div className="grid md:grid-cols-2 w-full gap-5">
+          {records.map((book, index) => (
+            <Card item={book} key={index} />
           ))}
         </div>
 
         {records.length === 0 && (
           <p className="text-center text-gray-600 dark:text-gray-400 mt-8">
-            No tools found matching your search.
+            No Projects found matching your search.
           </p>
         )}
       </div>

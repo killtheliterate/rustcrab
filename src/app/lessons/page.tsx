@@ -1,25 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
 import { lessons } from "@/data/lessons";
+import Head from "next/head";
+import { useSearch } from "@/hooks/useSearch/useSearch";
 
 export default function Lessons() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredLessons, setFilteredLessons] = useState(lessons);
-
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const term = event.target.value.toLowerCase();
-    setSearchTerm(term);
-    const filtered = lessons.filter((lessons) =>
-      lessons.title.toLowerCase().includes(term),
-    );
-    setFilteredLessons(filtered);
-  };
+  const { term, records, setSearchTerm } = useSearch({
+    records: lessons,
+    searchableFields: ["title"],
+  });
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+      <Head>
+        <title>Rustcrab | Rust Lessons</title>
+      </Head>
+
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-800 dark:text-white">
           Rust Lessons
@@ -30,8 +29,8 @@ export default function Lessons() {
             <input
               type="text"
               placeholder="Search lessons..."
-              value={searchTerm}
-              onChange={handleSearch}
+              value={term}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full p-3 pl-10 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-red-500"
             />
             <Search
@@ -42,7 +41,7 @@ export default function Lessons() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredLessons.map((lesson, index) => (
+          {records.map((lesson, index) => (
             <Link
               href={lesson.link}
               key={index}
@@ -74,7 +73,7 @@ export default function Lessons() {
           ))}
         </div>
 
-        {filteredLessons.length === 0 && (
+        {records.length === 0 && (
           <p className="text-center text-gray-600 dark:text-gray-400 mt-8">
             No lessons found matching your search.
           </p>
