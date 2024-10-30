@@ -1,5 +1,4 @@
 import { Inter, Roboto } from "next/font/google";
-import Head from "next/head";
 import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/Header";
@@ -25,6 +24,8 @@ if ((!themeChosen && isDarkModePreferred) || themeChosen === "dark") {
   return (
     <html lang="en">
       <head>
+        <title>Rustcrab | The Non-Crap Repo for Rust Developers</title>
+
         <meta
           name="description"
           content="The best repository for Rust developers"

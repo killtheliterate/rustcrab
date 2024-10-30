@@ -3,13 +3,9 @@
 import Link from "next/link";
 import React, { useState, useRef, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { MenuObject } from "./shared";
 
-interface menuObject {
-  items: string;
-  link: string;
-}
-
-export const menuItems: menuObject[] = [
+export const menuItems: MenuObject[] = [
   { items: "Home", link: "/" },
   { items: "Books", link: "/books" },
   { items: "Projects", link: "/projects" },
