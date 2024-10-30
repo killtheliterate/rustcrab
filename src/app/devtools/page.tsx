@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Search } from "lucide-react";
 import { tools } from "@/data/tools";
 import Card from "@/components/Card";
+import Head from "next/head";
 
 export default function DevTools() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -22,6 +23,10 @@ export default function DevTools() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-black">
+      <Head>
+        <title>Rustcrab | Rust Developer Tools</title>
+      </Head>
+
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-800 dark:text-white">
           Rust Developer Tools

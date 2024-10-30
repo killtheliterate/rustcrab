@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
 import { lessons } from "@/data/lessons";
+import Head from "next/head";
 
 export default function Lessons() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -20,6 +21,10 @@ export default function Lessons() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+      <Head>
+        <title>Rustcrab | Rust Lessons</title>
+      </Head>
+
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-800 dark:text-white">
           Rust Lessons

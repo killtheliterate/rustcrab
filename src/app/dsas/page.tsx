@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { dsas, DSA } from "@/data/dsa"; // Update the path to your data
 import { Search } from "lucide-react";
+import Head from "next/head";
 import { FaCopy } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -47,6 +48,10 @@ const DSAPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+      <Head>
+        <title> Rustcrab | Rust Developer Tools</title>
+      </Head>
+
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-800 dark:text-white">
           Data Structures in Rust

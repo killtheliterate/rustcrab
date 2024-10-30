@@ -1,16 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import Books from "../components/BooksSection";
-import DevToolsSection from "../components/DevToolsSection";
-import ProjectsSection from "../components/ProjectsSection";
 import SubstackCustom from "../components/SubstackCustom";
-import DSAToolSection from "@/components/DSASection";
-import LessonSection from "@/components/LessonSection";
+import Head from "next/head";
 
 export default function Home() {
   return (
     <main className="flex-grow flex flex-col items-center extra-small:text-[0.75em] small:text-[1rem] justify-center text-center space-y-6">
+      <Head>
+        <title>Rustcrab | The Non-Crap Repo for Rust Developers</title>
+      </Head>
+
       <div className="flex flex-col items-center justify-center text-center space-y-6 m-20">
         <Image
           src="/rust_lgo_720.png"

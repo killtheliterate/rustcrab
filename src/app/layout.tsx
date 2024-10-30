@@ -25,8 +25,6 @@ if ((!themeChosen && isDarkModePreferred) || themeChosen === "dark") {
   return (
     <html lang="en">
       <head>
-        <title>Rustcrab - The Non-Crap Repo for Rust Developers</title>
-
         <meta
           name="description"
           content="The best repository for Rust developers"
