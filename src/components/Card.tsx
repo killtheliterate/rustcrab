@@ -17,7 +17,6 @@ type CardProps = { item: Item };
 const Card: FC<CardProps> = ({ item }) => {
   return (
     <Link
-      target="_blank"
       href={item.link}
       className="dark:bg-gray-900 group bg-gray-200 rounded-lg shadow-lg transition duration-300 hover:shadow-xl min-w-full toolsInnerCard"
     >
@@ -31,10 +30,12 @@ const Card: FC<CardProps> = ({ item }) => {
               height={75}
               className="rounded-md min-w-20  h-30 p-2 object-contain"
             />
+
             <div className="grid gap-2 text-left text-wrap">
               <h3 className="text-xl font-semibold text-current dark:text-white">
                 {item.name ?? item.title}
               </h3>
+
               <p className="dark:text-gray-400 text-gray-600 mb-4">
                 {item.description}
               </p>
