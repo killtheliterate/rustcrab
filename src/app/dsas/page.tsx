@@ -8,23 +8,16 @@ import { FaCopy } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { useSearch } from "@/hooks/useSearch/useSearch";
 
 const DSAPage: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredDSAs, setFilteredDSAs] = useState(dsas);
+  const { term, records, setSearchTerm } = useSearch({
+    records: dsas,
+    searchableFields: ["data_structure", "description"],
+  });
+
   const [selectedTool, setSelectedTool] = useState<DSA | null>(null);
   const [copySuccess, setCopySuccess] = useState("");
-
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const term = event.target.value.toLowerCase();
-    setSearchTerm(term);
-    const filtered = dsas.filter(
-      (dsa) =>
-        dsa.data_structure.toLowerCase().includes(term) ||
-        dsa.description.toLowerCase().includes(term),
-    );
-    setFilteredDSAs(filtered);
-  };
 
   const handleOpenModal = (dsa: DSA) => {
     setSelectedTool(dsa);
@@ -62,8 +55,8 @@ const DSAPage: React.FC = () => {
             <input
               type="text"
               placeholder="Search data structures..."
-              value={searchTerm}
-              onChange={handleSearch}
+              value={term}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full p-3 pl-10 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-red-500"
             />
             <Search
@@ -74,7 +67,7 @@ const DSAPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredDSAs.map((dsa, index) => (
+          {records.map((dsa, index) => (
             <div
               key={index}
               className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg transition duration-300 hover:shadow-xl hover:scale-105"
@@ -97,7 +90,7 @@ const DSAPage: React.FC = () => {
           ))}
         </div>
 
-        {filteredDSAs.length === 0 && (
+        {records.length === 0 && (
           <p className="text-center text-gray-600 dark:text-gray-400 mt-8">
             No data structures found matching your search.
           </p>

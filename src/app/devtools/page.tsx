@@ -1,25 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Search } from "lucide-react";
 import { tools } from "@/data/tools";
 import Card from "@/components/Card";
 import Head from "next/head";
 
-export default function DevTools() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredTools, setFilteredTools] = useState(tools);
+import { useSearch } from "@/hooks/useSearch/useSearch";
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const term = event.target.value.toLowerCase();
-    setSearchTerm(term);
-    const filtered = tools.filter(
-      (tool) =>
-        tool.name.toLowerCase().includes(term) ||
-        tool.description.toLowerCase().includes(term),
-    );
-    setFilteredTools(filtered);
-  };
+export default function DevTools() {
+  const { term, records, setSearchTerm } = useSearch({
+    records: tools,
+    searchableFields: ["name", "description"],
+  });
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-black">
@@ -37,8 +30,8 @@ export default function DevTools() {
             <input
               type="text"
               placeholder="Search tools..."
-              value={searchTerm}
-              onChange={handleSearch}
+              value={term}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full p-3 pl-10 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-red-500"
             />
             <Search
@@ -49,12 +42,12 @@ export default function DevTools() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-5">
-          {filteredTools.map((tool, index) => (
+          {records.map((tool, index) => (
             <Card item={tool} key={index} />
           ))}
         </div>
 
-        {filteredTools.length === 0 && (
+        {records.length === 0 && (
           <p className="text-center text-gray-600 dark:text-gray-400 mt-8">
             No tools found matching your search.
           </p>

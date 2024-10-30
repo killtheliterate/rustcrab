@@ -1,27 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Search } from "lucide-react";
+import React from "react";
+import { Search } from "lucide-react";
 import { projects } from "@/data/projects";
 import Card from "@/components/Card";
 import Head from "next/head";
+import { useSearch } from "@/hooks/useSearch/useSearch";
 
 export default function Projects() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredProjects, setFilteredProjects] = useState(projects);
-
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const term = event.target.value.toLowerCase();
-    setSearchTerm(term);
-    const filtered = projects.filter(
-      (project) =>
-        project.name.toLowerCase().includes(term) ||
-        project.description.toLowerCase().includes(term),
-    );
-    setFilteredProjects(filtered);
-  };
+  const { term, records, setSearchTerm } = useSearch({
+    records: projects,
+    searchableFields: ["name", "description"],
+  });
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-black">
@@ -39,8 +29,8 @@ export default function Projects() {
             <input
               type="text"
               placeholder="Search books..."
-              value={searchTerm}
-              onChange={handleSearch}
+              value={term}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full p-3 pl-10 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-red-500"
             />
             <Search
@@ -51,12 +41,12 @@ export default function Projects() {
         </div>
 
         <div className="grid md:grid-cols-2 w-full gap-5">
-          {filteredProjects.map((book, index) => (
+          {records.map((book, index) => (
             <Card item={book} key={index} />
           ))}
         </div>
 
-        {filteredProjects.length === 0 && (
+        {records.length === 0 && (
           <p className="text-center text-gray-600 dark:text-gray-400 mt-8">
             No Projects found matching your search.
           </p>
