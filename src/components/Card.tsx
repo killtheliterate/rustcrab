@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { FaArrowRight } from "react-icons/fa";
 
 type Item = {
@@ -15,19 +15,6 @@ type Item = {
 type CardProps = { item: Item };
 
 const Card: FC<CardProps> = ({ item }) => {
-  const updateCursor = (event: PointerEvent) => {
-    document.documentElement.style.setProperty("--x", event.clientX + "px");
-    document.documentElement.style.setProperty("--y", event.clientY + "px");
-  };
-
-  useEffect(() => {
-    document.body.addEventListener("pointermove", updateCursor);
-
-    return () => {
-      document.body.removeEventListener("pointermove", updateCursor);
-    };
-  }, []);
-
   return (
     <Link
       target="_blank"
