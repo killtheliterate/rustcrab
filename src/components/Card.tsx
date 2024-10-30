@@ -12,12 +12,9 @@ type Item = {
   description: string;
 };
 
-type CardProps = {
-  item: Item;
-  key: number;
-};
+type CardProps = { item: Item };
 
-const Card: FC<CardProps> = ({ item, key }) => {
+const Card: FC<CardProps> = ({ item }) => {
   const updateCursor = (event: PointerEvent) => {
     document.documentElement.style.setProperty("--x", event.clientX + "px");
     document.documentElement.style.setProperty("--y", event.clientY + "px");
@@ -32,16 +29,14 @@ const Card: FC<CardProps> = ({ item, key }) => {
   }, []);
 
   return (
-    
     <Link
       target="_blank"
       href={item.link}
-      key={key}
       className="dark:bg-gray-900 group bg-gray-200 rounded-lg shadow-lg transition duration-300 hover:shadow-xl min-w-full toolsInnerCard"
     >
       <div className="flex items-center gap-5 sm:gap-10 relative hover:scale-105 p-6 px-10 transition duration-300">
         <div className="flex flex-col md:flex-col gap-5 items-start w-full">
-           <div className="md:flex flex-col">
+          <div className="md:flex flex-col">
             <Image
               src={item.icon ?? item.cover ?? ""}
               alt={item.name ?? item.title ?? ""}
@@ -62,7 +57,6 @@ const Card: FC<CardProps> = ({ item, key }) => {
         <FaArrowRight className="dark:text-white opacity-0 group-hover:opacity-100 -translate-x-10 group-hover:translate-x-0 transition duration-300" />
       </div>
     </Link>
-    
   );
 };
 
