@@ -1,21 +1,21 @@
-'use client';
-import Link from 'next/link';
-import React, { useState, useRef, useEffect } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+"use client";
+
+import Link from "next/link";
+import React, { useState, useRef, useEffect } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 interface menuObject {
   items: string;
   link: string;
 }
 
-
 export const menuItems: menuObject[] = [
-  { items: 'Home', link: '/' },
-  { items: 'Books', link: '/#books' },
-  { items: 'Projects', link: '/#projects' },
-  { items: 'Dev Tools', link: '/#dev_tools' },
-  { items: 'Lesson', link: '/#lessons' },
-  { items: 'DSA', link: '/#dsas' }
+  { items: "Home", link: "/" },
+  { items: "Books", link: "/books" },
+  { items: "Projects", link: "/projects" },
+  { items: "Dev Tools", link: "/dev_tools" },
+  { items: "Lesson", link: "/lessons" },
+  { items: "DSA", link: "/dsas" },
 ];
 
 const MobileNav: React.FC = () => {

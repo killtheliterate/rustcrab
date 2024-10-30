@@ -41,6 +41,7 @@ export default function Header() {
       document.documentElement.classList.add("dark");
       localStorage.theme = "dark";
     }
+
     setDarkMode(!darkMode);
   };
 
@@ -56,16 +57,19 @@ export default function Header() {
         <div className="flex items-center sm:hidden">
           <MobileNav />
         </div>
+
         <Link
           href="/"
           className="text-2xl md:text-2xl font-bold cursor-pointer hidden sm:block sm:text-base"
         >
           Rustcrab
         </Link>
+
         <div className="hidden sm:block">
-          <Navbar  />
+          <Navbar />
         </div>
       </div>
+
       <div className="flex items-center space-x-4">
         <a
           href="https://dly.to/vRJ9aTACP65"
@@ -81,6 +85,7 @@ export default function Header() {
             height={24}
           />
         </a>
+
         <a
           href="https://github.com/FrancescoXX/rustcrab"
           target="_blank"
@@ -93,6 +98,7 @@ export default function Header() {
             <span className="text-xl">{starsCount} ★</span>
           )}
         </a>
+
         <button
           onClick={toggleDarkMode}
           className="text-2xl"

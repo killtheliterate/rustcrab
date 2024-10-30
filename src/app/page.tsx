@@ -19,6 +19,7 @@ export default function Home() {
           height={100}
           className="mx-auto"
         />
+
         <h1 className="text-5xl font-bold flex items-center space-x-2">
           <a
             href="https://github.com/FrancescoXX/rustcrab"
@@ -29,15 +30,21 @@ export default function Home() {
             Rustcrab
           </a>
         </h1>
+
         <br />
+
         <p className="text-2xl md:text-3xl lg:text-4xl text-current">
           An Open source project with everything you need to learn about Rust
         </p>
+
         <br />
+
         <div className="w-full max-w-md">
           <SubstackCustom />
         </div>
+
         <br />
+
         <a
           href="https://mybook.to/YJI6DI"
           target="_blank"
@@ -46,21 +53,6 @@ export default function Home() {
         >
           Preorder the Rust Book Now!
         </a>
-      </div>
-      <div id='books' className='min-h-dvh'>
-        <Books />
-      </div>
-      <div id='dev_tools' className='min-h-dvh'>
-        <DevToolsSection />
-      </div>
-      <div id='lessons' className='min-h-dvh'>
-        <LessonSection />
-      </div>
-      <div id='dsas' className='min-h-dvh'>
-        <DSAToolSection />
-      </div>
-      <div id='projects' className='min-h-dvh'>
-        <ProjectsSection />
       </div>
     </main>
   );
