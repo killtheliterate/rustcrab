@@ -11,9 +11,7 @@ const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   const initDarkModeDetection = `
 (function () {
 const isDarkModePreferred = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -32,6 +30,7 @@ if ((!themeChosen && isDarkModePreferred) || themeChosen === "dark") {
           id="dark-mode-detection"
           dangerouslySetInnerHTML={{ __html: initDarkModeDetection }}
         ></script>
+
         <meta property="og:title" content="Rustcrab" />
         <meta
           property="og:description"
@@ -52,18 +51,24 @@ if ((!themeChosen && isDarkModePreferred) || themeChosen === "dark") {
           name="twitter:image"
           content="https://www.rustcrab.com/rust_lgo_720.png"
         />
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-J6GRE0TKHY"
-        ></Script>
-        <Script id="google-analytics">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-J6GRE0TKHY');
-          `}
-        </Script>
+
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <Script
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=G-J6GRE0TKHY"
+            ></Script>
+
+            <Script id="google-analytics">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-J6GRE0TKHY');
+              `}
+            </Script>
+          </>
+        )}
       </head>
       <Head>
         <title>Rustcrab - The Non-Crap Repo for Rust Developers</title>
