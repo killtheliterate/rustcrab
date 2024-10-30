@@ -27,12 +27,12 @@ if ((!themeChosen && isDarkModePreferred) || themeChosen === "dark") {
   return (
     <html lang="en">
       <head>
-      <script
+        <script
           type="application/javascript"
           id="dark-mode-detection"
           dangerouslySetInnerHTML={{ __html: initDarkModeDetection }}
-        ></script>        
-      <meta property="og:title" content="Rustcrab" />
+        ></script>
+        <meta property="og:title" content="Rustcrab" />
         <meta
           property="og:description"
           content="An Open source project with everything you need to learn about Rust."
@@ -73,12 +73,16 @@ if ((!themeChosen && isDarkModePreferred) || themeChosen === "dark") {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <body className={`${inter.className} ${roboto.className} bg-white dark:bg-black min-h-screen text-black dark:text-white `}>
+
+      <body
+        className={`${inter.className} ${roboto.className} bg-white dark:bg-black min-h-screen text-black dark:text-white `}
+      >
         <Header />
         {children}
         <Footer />
+
+        <CookieConsent />
       </body>
-      <CookieConsent />
     </html>
   );
 }
